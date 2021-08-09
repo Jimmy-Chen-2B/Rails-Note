@@ -1,5 +1,6 @@
-Rails.application.routes.draw do 
-  get "/notes", to: "notes#index"
+Rails.application.routes.draw do   
+  resources :notes
+
 
   get "/hello", to: "pages#main"
   get "/about", to: "pages#about"
