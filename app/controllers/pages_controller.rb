@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
   def main
-    # render html: 123
+    @abc = "Welcome"
+  end
+  def about
   end
 end
