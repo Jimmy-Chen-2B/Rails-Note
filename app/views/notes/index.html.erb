@@ -2,8 +2,7 @@
 
 <%= link_to "Add note", new_note_path %> 
 
-<ul>
-<% @notes.each do |note| %>
-  <li><%= link_to note.title, note_path(note.id) %></li> 
-<% end %>
+<%= render "notes", notes: @notes %>
+
 </ul>
+
