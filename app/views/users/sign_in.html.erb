@@ -1,0 +1,13 @@
+<h1>會員登入</h1>
+
+<%= form_for(@user, url: '' ) do |f| %>
+  <div class='field'>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.submit 'Login' %>
+  </div>
+<% end %>
