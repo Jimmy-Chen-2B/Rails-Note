@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
   before_action :find_note, only: %i[show edit update destroy]
+  before_action :check_login!, except: %i[index show]
 
   def index
     @notes = Note.order(id: :desc)
@@ -32,7 +33,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note.destroy
+    @note.update(add_deleted_at: Time.now)
     redirect_to '/notes'
   end
 

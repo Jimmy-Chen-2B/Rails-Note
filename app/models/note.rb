@@ -1,8 +1,10 @@
 class Note < ApplicationRecord
-  validates :title, presence: true # validates 是類別方法
+  validates :title, presence: true 
   validates :content, presence: true
 
-  default_scope { where(deleted_at: nil) }
+  belongs_to :user
+
+  default_scope { where(add_deleted_at: nil) }
 end
 
 

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  post 'users/sign_in', to: 'sessions#create', as: 'login'
-  post 'users', to: 'sessions#destroy', as: 'logout'
+  post '/users/sign_in', to: 'sessions#create', as: 'login'
+  
+  delete '/users', to: 'sessions#destroy', as: 'logout'
 end
