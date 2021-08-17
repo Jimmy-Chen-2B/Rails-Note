@@ -9,6 +9,11 @@ class User < ApplicationRecord
   before_create :encrypt_password
 
   has_many :notes
+  
+  has_many :bookmarks
+  has_many :favorite_notes, 
+            through: :bookmarks, 
+            source: :note
 
   private
 

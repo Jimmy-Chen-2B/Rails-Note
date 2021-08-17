@@ -17,7 +17,8 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def profile; end
+  def profile
+  end
 
   def user_params
     params.require(:user).permit(:email,

@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   def user_signed_in?
     session[:youget] != nil 
   end
+  
   def current_user
     if user_signed_in?
       User.find(session[:youget])

@@ -1,19 +1,27 @@
 class NotesController < ApplicationController
-  before_action :find_note, only: %i[show edit update destroy]
+  before_action :find_user_note, only: %i[edit update destroy]
   before_action :check_login!, except: %i[index show]
 
   def index
-    @notes = Note.order(id: :desc)
+    # @notes = Note.order(id: :desc)
+    @notes = Note.includes(:user).order(id: :desc) 
   end
 
-  def show; end
+  def show
+    @note = Note.find(params[:id])
+    @comment = @note.comments.new
+    @comments = @note.comments.order(id: :desc)
+  end
+
+  def edit
+  end
 
   def new
-    @note = Note.new
+    @note = current_user.notes.new
   end
 
   def create
-    @note = Note.new(clean_params)
+    @note = current_user.notes.new(note_params)
 
     if @note.save
       redirect_to '/notes'
@@ -22,10 +30,8 @@ class NotesController < ApplicationController
     end
   end
 
-  def edit; end
-
   def update
-    if @note.update(clean_params)
+    if @note.update(note_params)
       redirect_to '/notes'
     else
       render :edit
@@ -39,11 +45,11 @@ class NotesController < ApplicationController
 
   private
 
-  def clean_params
+  def note_params
     params.require(:note).permit(:title, :content)
   end
 
-  def find_note
-    @note = Note.find(params[:id])
+  def find_user_note
+    @note = current_user.notes.find(params[:id])
   end
 end

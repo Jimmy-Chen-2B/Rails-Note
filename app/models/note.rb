@@ -3,7 +3,10 @@ class Note < ApplicationRecord
   validates :content, presence: true
 
   belongs_to :user
-
+  has_many :comments
+  has_many :bookmarks
+  has_many :users, through: :bookmarks
+  
   default_scope { where(add_deleted_at: nil) }
 end
 
