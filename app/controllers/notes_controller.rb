@@ -3,7 +3,6 @@ class NotesController < ApplicationController
   before_action :check_login!, except: %i[index show]
 
   def index
-    # @notes = Note.order(id: :desc)
     @notes = Note.includes(:user).order(id: :desc) 
   end
 
@@ -39,7 +38,7 @@ class NotesController < ApplicationController
   end
 
   def destroy
-    @note.update(add_deleted_at: Time.now)
+    @note.update(deleted_at: Time.now)
     redirect_to '/notes'
   end
 
@@ -50,6 +49,6 @@ class NotesController < ApplicationController
   end
 
   def find_user_note
-    @note = current_user.notes.find(params[:id])
+    @note = current_user.notes.find(params[:id])  
   end
 end

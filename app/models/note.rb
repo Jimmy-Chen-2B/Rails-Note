@@ -7,7 +7,7 @@ class Note < ApplicationRecord
   has_many :bookmarks
   has_many :users, through: :bookmarks
   
-  default_scope { where(add_deleted_at: nil) }
+  default_scope { where(deleted_at: nil) }
 end
 
 

@@ -1,30 +1,26 @@
 <div class="note-heading">
   <h1>筆記：<%= @note.title %></h1>
-  <a href="#"><div class="favorite_icon"></a>
+
+  <a href="#" id="favorite_btn" data-id="<%= @note.id %>">
+    <div class="favorite_icon">
+  </a>
 </div>    
 
 <%= @note.content %>
 
-<!-- <%= form_for(@comment, url: note_comments_path(@note), remote: true) do |f| %> -->
+<%#= form_for(@comment, url: note_comments_path(@note), remote: true) do |f| %>
 
 <%= form_with(model: @comment, url: note_comments_path(@note), local: false) do |f| %>
-
-<%= f.text_area :content %>
-<%= f.submit '我要留言' %>
-  
+  <%= f.text_area :content %>
+  <%= f.submit '我要留言' %>
 <% end %>
 
 <ul class='comments'>
-  <% @comments.each do |comment| %>
-    <li>
-      <%= comment %>
-    </li>
-  <% end %>
+<% @comments.each do |comment| %>
+  <li><%= comment %></li>   
+<% end %>
 </ul>
 
 
 
 
-<!-- 建一個Controller -->
-<!-- 寫create方法 -->
-<!-- before_action -->

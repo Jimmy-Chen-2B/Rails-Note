@@ -18,4 +18,16 @@ Rails.application.routes.draw do
   post '/users/sign_in', to: 'sessions#create', as: 'login'
   
   delete '/users', to: 'sessions#destroy', as: 'logout'
+
+  namespace :api do 
+    namespace :v1 do
+      resources :notes, only: [] do
+        member do 
+          post :favorite
+        end
+      end  
+    end
+  end    
+
+
 end
