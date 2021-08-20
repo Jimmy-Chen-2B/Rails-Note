@@ -10,12 +10,20 @@
 
 
 <%= form_for(note) do |f| %>
-
+  <div>
   <%= f.label :title, "標題" %>
   <%= f.text_field :title %>
 
-  <%= f.label :content, "內文" %>
-  <%= f.text_area :content %>
+  <%= f.label :online_date, "上線日期" %>
+    <%= f.date_field :online_date,
+                     date: { controller: "datepicker" } %>  
+  </div>
+  <div>
+    
+    <%= f.label :content, "內文" %>
+  <%= f.text_area :content, 
+                   data: { controller: "editor" } %>
+  </div>
 
   <%= f.submit %>
 <% end %>

@@ -1,10 +1,15 @@
 <div class="note-heading">
-  <h1>筆記：<%= @note.title %></h1>
+  <h1>筆記: <%= @note.title %></h1>
 
-  <a href="#" id="favorite_btn" data-id="<%= @note.id %>">
-    <div class="favorite_icon">
-  </a>
-</div>    
+  <div data-controller="favorite"
+       data-favorite-id-value="<%= @note.id %>">
+    <a href="#"
+       id="favorite_btn"
+       data-action="favorite#toggleFavorite">
+      <%= favorite_icon(current_user, @note) %>
+    </a>
+  </div>
+</div>
 
 <%= @note.content %>
 
@@ -12,12 +17,12 @@
 
 <%= form_with(model: @comment, url: note_comments_path(@note), local: false) do |f| %>
   <%= f.text_area :content %>
-  <%= f.submit '我要留言' %>
+  <%= f.submit "新增留言" %>
 <% end %>
 
-<ul class='comments'>
+<ul class="comments">
 <% @comments.each do |comment| %>
-  <li><%= comment %></li>   
+  <li><%= comment.content %></li>
 <% end %>
 </ul>
 

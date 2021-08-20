@@ -15,6 +15,10 @@ class User < ApplicationRecord
             through: :bookmarks, 
             source: :note
 
+  def favorite?(n) 
+    favorite_notes.exists?(n.id)
+  end
+
   private
 
   def encrypt_password
